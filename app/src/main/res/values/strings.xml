@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Fragments</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_b">Fragment B</string>
+    <string name="fragment_a">Fragment A</string>
+    <string name="fragment_c">Fragment C</string>
+    <string name="go_to_fragment_d">Go to fragment D</string>
+    <string name="go_to_fragment_c">Go to fragment C</string>
+    <string name="go_back">Go Back</string>
+    <string name="some_text_from_bundle">Some text from bundle</string>
+    <string name="go_back_to_fragment_a">Go back to fragment A</string>
+    <string name="fragment_d">Fragment D</string>
+    <string name="go_back_to_fragment_b">Go back to fragment B</string>
+    <string name="go_to_fragment_b">Go to fragment B</string>
 </resources>

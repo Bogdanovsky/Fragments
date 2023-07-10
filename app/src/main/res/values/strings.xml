@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">FragmentContacts</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dianne">Dianne</string>
+    <string name="hackborn">Hackborn</string>
+    <string name="_7_999_555_44_33">+7 (999) 555-44-33</string>
+    <string name="_7_333_234_43_43">7 (333) 234-43-43</string>
+    <string name="fox">Fox</string>
+    <string name="megan">Megan</string>
+    <string name="_7_323_234_23_12">+7 (323) 234-23-12</string>
+    <string name="fujiwara">Fujiwara</string>
+    <string name="lyla">Lyla</string>
+    <string name="polina">Polina</string>
+    <string name="sibogotulina">Sibogotulina</string>
+    <string name="_7_123_123_45_67">7 (123) 123-45-67</string>
+    <string name="index_1">Index: 1</string>
+    <string name="name">Name:</string>
+    <string name="surname">Surname:</string>
+    <string name="phone">Phone:</string>
+    <string name="save">Save</string>
 </resources>

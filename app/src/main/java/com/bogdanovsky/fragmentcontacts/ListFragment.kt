@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.bogdanovsky.fragmentcontacts.UserFragment.Companion.TAG_USER_FRAGMENT
+import com.bogdanovsky.fragmentcontacts.Database.users
+import com.bogdanovsky.fragmentcontacts.UserFragment.Companion.USER_FRAGMENT_TAG
 
 class ListFragment : Fragment() {
 
@@ -19,37 +20,33 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listOfViews = listOf<ViewGroup>(
-            view.findViewById(R.id.item_layout_1),
-            view.findViewById(R.id.item_layout_2),
-            view.findViewById(R.id.item_layout_3),
-            view.findViewById(R.id.item_layout_4),
-        )
-        for (i in users.indices) {
-            val item = listOfViews[i]
-            item.findViewById<TextView>(R.id.name).text = users[i].name
-            item.findViewById<TextView>(R.id.surname).text = users[i].surname
-            item.findViewById<TextView>(R.id.phone).text = users[i].phone
-            item.setOnClickListener {
-                (requireActivity() as MainActivity).navigateTo(TAG_USER_FRAGMENT, i)
+        val listOfViews = mutableListOf<ViewGroup>()
+        with (view) {
+            listOfViews.apply {
+                add(findViewById(R.id.item_layout_1))
+                add(findViewById(R.id.item_layout_2))
+                add(findViewById(R.id.item_layout_3))
+                add(findViewById(R.id.item_layout_4))
+            }
+        }
+
+        users.forEachIndexed { index, user ->
+            with(listOfViews[index]) {
+                findViewById<TextView>(R.id.name).text = user.name
+                findViewById<TextView>(R.id.surname).text = user.surname
+                findViewById<TextView>(R.id.phone).text = user.phone
+                setOnClickListener {
+                    (requireActivity() as MainActivity).navigateTo(USER_FRAGMENT_TAG, index)
+                }
             }
         }
     }
 
     companion object {
-        const val TAG_LIST_FRAGMENT = "TAG_LIST_FRAGMENT"
-        val users = listOf<User>(
-            User("Dianne", "Hackborn", "7 (999) 555-44-33"),
-            User("Lyla", "Fujiwara", "7 (333) 234-43-43"),
-            User("Megan", "Fox", "7 (323) 234-23-12"),
-            User("Polina", "Sibogotulina", "7 (123) 123-45-67"),
-        )
+        const val LIST_FRAGMENT_TAG = "TAG_LIST_FRAGMENT"
 
         @JvmStatic
         fun newInstance() = ListFragment()
     }
 }
 
-interface FragmentNavigator {
-    fun navigateTo(target: String, userIndex: Int)
-}

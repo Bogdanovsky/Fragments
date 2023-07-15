@@ -3,8 +3,8 @@ package com.bogdanovsky.fragmentcontacts
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.commit
-import com.bogdanovsky.fragmentcontacts.ListFragment.Companion.TAG_LIST_FRAGMENT
-import com.bogdanovsky.fragmentcontacts.UserFragment.Companion.TAG_USER_FRAGMENT
+import com.bogdanovsky.fragmentcontacts.ListFragment.Companion.LIST_FRAGMENT_TAG
+import com.bogdanovsky.fragmentcontacts.UserFragment.Companion.USER_FRAGMENT_TAG
 
 class MainActivity : AppCompatActivity(), FragmentNavigator {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,19 +14,21 @@ class MainActivity : AppCompatActivity(), FragmentNavigator {
         with(supportFragmentManager) {
             commit {
                 replace(R.id.fragment_container_view, ListFragment.newInstance())
-//                addToBackStack(TAG_LIST_FRAGMENT)
             }
         }
     }
 
     override fun navigateTo(target: String, userIndex: Int) {
         supportFragmentManager.commit {
-            val targetFragment = when (target) {
-                TAG_LIST_FRAGMENT -> ListFragment.newInstance()
-                TAG_USER_FRAGMENT -> UserFragment.newInstance(userIndex)
-                else -> throw java.lang.RuntimeException("No such tag")
+            when (target) {
+                USER_FRAGMENT_TAG -> {
+                    replace(R.id.fragment_container_view, UserFragment.newInstance(userIndex))
+                    addToBackStack(USER_FRAGMENT_TAG)
+                }
+                LIST_FRAGMENT_TAG -> {
+                    supportFragmentManager.popBackStack()
+                }
             }
-            replace(R.id.fragment_container_view, targetFragment)
         }
     }
 }

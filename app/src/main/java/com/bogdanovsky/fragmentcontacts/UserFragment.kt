@@ -8,10 +8,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.bogdanovsky.fragmentcontacts.ListFragment.Companion.TAG_LIST_FRAGMENT
+import com.bogdanovsky.fragmentcontacts.Database.users
+import com.bogdanovsky.fragmentcontacts.ListFragment.Companion.LIST_FRAGMENT_TAG
 
 class UserFragment : Fragment() {
-
     var userIndex: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,26 +30,31 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val user = users[userIndex]
         with(view) {
-            view.findViewById<TextView>(R.id.id_text_view).text = "User index: $userIndex"
-            val user = ListFragment.users[userIndex]
-            val nameEditText = findViewById<EditText>(R.id.name_edit_view)
-            nameEditText.setText(user.name)
-            val surnameEditText = findViewById<EditText>(R.id.surname_edit_view)
-            surnameEditText.setText(user.surname)
-            val phoneEditText = findViewById<EditText>(R.id.phone_edit_view)
-            phoneEditText.setText(user.phone)
+            findViewById<TextView>(R.id.id_text_view).text = "User index: $userIndex"
+            val nameEditText = findViewById<EditText>(R.id.name_edit_view).apply {
+                setText(user.name)
+            }
+            val surnameEditText = findViewById<EditText>(R.id.surname_edit_view).apply {
+                setText(user.surname)
+            }
+            val phoneEditText = findViewById<EditText>(R.id.phone_edit_view).apply {
+                setText(user.phone)
+            }
             findViewById<Button>(R.id.save_button).setOnClickListener {
-                user.name = nameEditText.text.toString()
-                user.surname = surnameEditText.text.toString()
-                user.phone = phoneEditText.text.toString()
-                (requireActivity() as MainActivity).navigateTo(TAG_LIST_FRAGMENT, userIndex)
+                user.apply {
+                    name = nameEditText.text.toString()
+                    surname = surnameEditText.text.toString()
+                    phone = phoneEditText.text.toString()
+                }
+                (requireActivity() as MainActivity).navigateTo(LIST_FRAGMENT_TAG, userIndex)
             }
         }
     }
 
     companion object {
-        const val TAG_USER_FRAGMENT = "TAG_USER_FRAGMENT"
+        const val USER_FRAGMENT_TAG = "TAG_USER_FRAGMENT"
         const val USER_INDEX_KEY = "USER_INDEX_KEY"
 
         @JvmStatic

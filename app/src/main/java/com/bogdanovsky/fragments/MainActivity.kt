@@ -4,13 +4,13 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.commit
 import com.bogdanovsky.fragments.FragmentA.Companion.FRAGMENT_A_TAG
 import com.bogdanovsky.fragments.FragmentB.Companion.FRAGMENT_B_TAG
 import com.bogdanovsky.fragments.FragmentC.Companion.FRAGMENT_C_TAG
 import com.bogdanovsky.fragments.FragmentD.Companion.FRAGMENT_D_TAG
 
+const val STRING_TO_TRANSFER = "Hello Fragment C"
 const val STRING_TO_TRANSFER_KEY = "STRING_TO_TRANSFER_KEY"
 
 class MainActivity : AppCompatActivity(), NavigateButtonClickListener {

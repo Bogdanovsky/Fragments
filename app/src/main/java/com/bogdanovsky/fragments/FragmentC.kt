@@ -1,5 +1,6 @@
 package com.bogdanovsky.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,12 @@ import com.bogdanovsky.fragments.FragmentD.Companion.FRAGMENT_D_TAG
 
 class FragmentC : Fragment() {
     private var stringFromB: String? = ""
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context !is MainActivity) throw java.lang.RuntimeException("Wrong context for FragmentC")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,14 +38,14 @@ class FragmentC : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<TextView>(R.id.fragment_c_extra_textview).text = stringFromB
-
-        view.findViewById<Button>(R.id.to_fragment_d_button).setOnClickListener {
-            (requireActivity() as MainActivity).onNextButtonClicked(FRAGMENT_D_TAG)
-        }
-
-        view.findViewById<Button>(R.id.fragment_c_go_back_to_fragment_a_button).setOnClickListener {
-            (requireActivity() as MainActivity).onNavigateBackToClicked(FRAGMENT_A_TAG)
+        with(view) {
+            findViewById<TextView>(R.id.fragment_c_extra_textview).text = stringFromB
+            findViewById<Button>(R.id.to_fragment_d_button).setOnClickListener {
+                (requireActivity() as MainActivity).onNextButtonClicked(FRAGMENT_D_TAG)
+            }
+            findViewById<Button>(R.id.fragment_c_go_back_to_fragment_a_button).setOnClickListener {
+                (requireActivity() as MainActivity).onNavigateBackToClicked(FRAGMENT_A_TAG)
+            }
         }
     }
 

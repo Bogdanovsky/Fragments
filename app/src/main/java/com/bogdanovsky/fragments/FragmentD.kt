@@ -1,5 +1,6 @@
 package com.bogdanovsky.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,12 @@ import android.widget.Button
 import com.bogdanovsky.fragments.FragmentB.Companion.FRAGMENT_B_TAG
 
 class FragmentD : Fragment() {
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context !is MainActivity) throw java.lang.RuntimeException("Wrong context for FragmentD")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

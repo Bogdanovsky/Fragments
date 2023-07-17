@@ -11,9 +11,8 @@ import android.widget.TextView
 import com.bogdanovsky.fragments.FragmentA.Companion.FRAGMENT_A_TAG
 import com.bogdanovsky.fragments.FragmentD.Companion.FRAGMENT_D_TAG
 
-
 class FragmentC : Fragment() {
-    private var stringFromB: String? = ""
+    private var stringFromB: String? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -31,9 +30,7 @@ class FragmentC : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_c, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.fragment_c, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,11 +50,9 @@ class FragmentC : Fragment() {
         const val FRAGMENT_C_TAG = "FRAGMENT_C_TAG"
 
         @JvmStatic
-        fun newInstance(text: String) =
+        fun newInstance(bundle: Bundle) =
             FragmentC().apply {
-                arguments = Bundle().apply {
-                    putString(STRING_TO_TRANSFER_KEY, text)
-                }
+                arguments = bundle
             }
     }
 }

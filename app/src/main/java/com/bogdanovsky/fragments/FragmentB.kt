@@ -21,9 +21,7 @@ class FragmentB : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_b, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.fragment_b, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,7 +42,6 @@ class FragmentB : Fragment() {
         const val FRAGMENT_B_TAG = "FRAGMENT_B_TAG"
 
         @JvmStatic
-        fun newInstance() =
-            FragmentB()
+        fun newInstance() = FragmentB()
     }
 }
